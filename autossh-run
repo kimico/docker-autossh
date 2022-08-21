@@ -14,22 +14,5 @@ if [ ! -r /root/.ssh/id_rsa ]; then
   echo
 fi
 
-AUTOSSH_CONF_DIR="/etc/autossh.conf.d/"
-AUTOSSH_CONF_FILE="/etc/ssh/ssh_config"
 
-if [ ! -r ${AUTOSSH_CONF_FILE} ]; then
-  echo -e "\nAutoSSH configuration file '${AUTOSSH_CONF_FILE}' does not exists."
-  echo -e "Available AutoSSH config files are:\n"
-  ls -Al ${AUTOSSH_DIR}
-  exit 1
-fi
-
-# Build ssh_config by including AUTOSSH_CONF_DIR defined hosts.
-echo "Building ${AUTOSSH_CONF_FILE} from files in ${AUTOSSH_CONF_DIR}..."
-cat ${AUTOSSH_CONF_DIR}/* | tee -a ${AUTOSSH_CONF_FILE}
-
-echo -e "\n${AUTOSSH_CONF_FILE} built from the following files:"
-ls -Al ${AUTOSSH_CONF_DIR}
-echo
-
-exec autossh -vNF ${AUTOSSH_CONF_FILE} $@
+exec autossh -vNF $@
