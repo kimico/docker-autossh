@@ -20,5 +20,3 @@ WORKDIR /root
 
 ENTRYPOINT [ "/root/autossh-run" ]
 
-# Provide defaults: Connect by default to 'auto' defined host alias.
-CMD [ "auto" ]
