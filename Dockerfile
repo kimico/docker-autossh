@@ -1,4 +1,4 @@
-FROM pataquets/ubuntu:xenial
+ROM ubuntu:latest
 
 RUN \
   apt-get update && \
@@ -9,14 +9,13 @@ RUN \
   rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -vp /etc/autossh.conf.d/
-ADD autossh.conf.d/* /etc/autossh.conf.d/
+#ADD autossh.conf.d/* /etc/autossh.conf.d/
 
 RUN mkdir -vp /root/.ssh/
 RUN chmod go-rwx /root/.ssh/
 
-ADD autossh-run /root/
+#ADD autossh-run /root/
 
 WORKDIR /root
 
-ENTRYPOINT [ "/root/autossh-run" ]
 
